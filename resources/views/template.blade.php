@@ -30,7 +30,7 @@
 <!-- BARRE DE NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
     <div class="container">
-        <a class="navbar-brand text-warning fw-bold fs-3" href="{{ route('accueil') }}">
+        <a class="navbar-brand text-warning fw-bold fs-3" href="{{ url('/') }}">
             TechFinder
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -39,17 +39,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('accueil') ? 'active' : '' }}" href="{{ route('accueil') }}">
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">
                         🏠 Accueil
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('competences.*') ? 'active' : '' }}" href="{{ route('competences.index') }}">
+                    <a class="nav-link {{ request()->is('competences*') ? 'active' : '' }}" href="{{ url('/competences') }}">
                         🛠 Compétences
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">👥 Utilisateurs</a>
+                    <a class="nav-link {{ request()->is('utilisateurs*') ? 'active' : '' }}" href="{{ url('/utilisateurs') }}">
+                        👥 Utilisateurs
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">🔧 Interventions</a>
@@ -62,7 +64,6 @@
         </div>
     </div>
 </nav>
-
 <!-- CONTENU PRINCIPAL -->
 @yield('content')
 
